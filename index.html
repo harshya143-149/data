@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Accident Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="number"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .prediction-result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Traffic Accident Prediction</h1>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label for="Traffic_Density">Traffic Density</label>
+                <input type="number" step="any" id="Traffic_Density" name="Traffic_Density" required>
+            </div>
+            <div class="form-group">
+                <label for="Speed_Limit">Speed Limit</label>
+                <input type="number" step="any" id="Speed_Limit" name="Speed_Limit" required>
+            </div>
+            <div class="form-group">
+                <label for="Number_of_Vehicles">Number of Vehicles</label>
+                <input type="number" step="any" id="Number_of_Vehicles" name="Number_of_Vehicles" required>
+            </div>
+            <div class="form-group">
+                <label for="Driver_Alcohol">Driver Alcohol (0 = No, 1 = Yes)</label>
+                <input type="number" step="any" id="Driver_Alcohol" name="Driver_Alcohol" required>
+            </div>
+            <div class="form-group">
+                <label for="Driver_Age">Driver Age</label>
+                <input type="number" step="any" id="Driver_Age" name="Driver_Age" required>
+            </div>
+            <div class="form-group">
+                <label for="Driver_Experience">Driver Experience</label>
+                <input type="number" step="any" id="Driver_Experience" name="Driver_Experience" required>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+
+
+        {% if prediction_text %}
+            <div class="prediction-result">
+                <h2>{{ prediction_text }}</h2>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
